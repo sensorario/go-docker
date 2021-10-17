@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+    app:
+        build:
+            dockerfile: Dockerfile
+            context: .
+        volumes:
+            - .:/opt/app/api
+        ports:
+            - "5000:5000"
