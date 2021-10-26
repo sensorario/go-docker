@@ -2,8 +2,8 @@ package main
 
 import (
     "fmt"
-        "net/http"
-        )
+    "net/http"
+)
 
 func main() {
     http.HandleFunc("/", HelloServer);
