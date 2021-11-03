@@ -1,16 +1,28 @@
 package main
 
 import (
-    "fmt"
-    "net/http"
+	"fmt"
+	"github.com/sensorario/gol"
+	"net/http"
+	"time"
 )
 
 func main() {
-    http.HandleFunc("/", HelloServer);
-    http.ListenAndServe(":5000", nil);
+	go forever()
+	// select {}
+
+	http.HandleFunc("/", HelloServer)
+	http.ListenAndServe(":5000", nil)
 }
 
 func HelloServer(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Hello, world!");
+	fmt.Fprintf(w, "Ciaone, mondo!")
 }
 
+func forever() {
+	l := gol.NewCustomLogger("/app/logs")
+	for {
+		l.Info(fmt.Sprintf("%v+\n", time.Now()))
+		time.Sleep(time.Second)
+	}
+}

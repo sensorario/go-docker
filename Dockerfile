@@ -1,7 +1,10 @@
-FROM golang
-RUN mkdir /app
+FROM golang:1.17-alpine
+RUN mkdir -p /app/logs
 ADD . /app
 WORKDIR /app
-RUN go build -o main .
+RUN go get -d -v ./...
+RUN go install -v ./...
+RUN go build -o /application
 EXPOSE 5000
-CMD ["/app/main"]
+RUN touch /app/logs/logger.log
+CMD ["/application"]

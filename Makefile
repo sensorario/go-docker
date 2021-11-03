@@ -1,14 +1,11 @@
 up:
-	docker-compose up -d --build
+	docker-compose up -d
+
+build:
+	docker-compose up -d --build --remove-orphans
 
 down:
 	docker-compose down
 
-build:
-	docker build -t my-go-app .
-
 bash:
 	docker-compose exec app sh
-
-deleteImage:
-	docker rmi go-docker_app --force
